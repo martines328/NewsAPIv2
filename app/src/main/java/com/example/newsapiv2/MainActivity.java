@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         remoteDataSource = new RemoteDataSource();
         remoteDataSource.execute();
 
-        NewsRepository newsRepository = new NewsRepository();
-        newsRepository.insertNews("one","otwo","one","one","one","one");
+
 
 
 
