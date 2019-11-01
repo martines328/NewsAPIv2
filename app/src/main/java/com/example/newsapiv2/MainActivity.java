@@ -27,16 +27,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     public static RecyclerView recyclerView;
-    RecyclerView.LayoutManager layoutManager;
-    public static Adapter adapter;
-
     public static SwipeRefreshLayout swipeRefreshLayout;
-    public static String sources = "techcrunch";
+    RemoteDataSource remoteDataSource;
 
     final static String apikey = "156885bf94af406cbe310eb5ef39d6da";
-    List<Arcticle> arcticles = new ArrayList<>();
-    RemoteDataSource remoteDataSource;
-   // public static Context context;
 
 
 
@@ -50,13 +44,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
 
-
-
-
         remoteDataSource = new RemoteDataSource();
         remoteDataSource.execute();
-
-
 
 
 

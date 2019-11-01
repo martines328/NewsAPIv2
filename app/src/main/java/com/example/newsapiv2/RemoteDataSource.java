@@ -26,17 +26,16 @@ import static com.example.newsapiv2.MainActivity.swipeRefreshLayout;
 public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
 
-    public static String sources = "techcrunch";
     List<Arcticle> arcticles = new ArrayList<>();
-     public Adapter adapter;
-     Context context;
+    public Adapter adapter;
+    Context context;
 
+    public static String sources = "techcrunch";
 
 
 
     @Override
     protected Void doInBackground(Void... voids) {
-
 
 
         ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
