@@ -13,7 +13,6 @@ public class EntityDB {
     public int id;
 
 
-
     @ColumnInfo(name = "title")
     public String title;
 
@@ -65,9 +64,9 @@ public class EntityDB {
         this.author = author;
     }
 
-    public String getName() {
+   /* public String getName() {
         return name;
-    }
+    }*/
 
     public void setName(String name) {
         this.name = name;

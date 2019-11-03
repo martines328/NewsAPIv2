@@ -10,6 +10,7 @@ import com.example.newsapiv2.API.ApiClient;
 import com.example.newsapiv2.API.ApiInterface;
 import com.example.newsapiv2.API.Arcticle;
 import com.example.newsapiv2.API.News;
+import com.example.newsapiv2.Room.NewsDataBAse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,17 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
     List<Arcticle> arcticles = new ArrayList<>();
     public Adapter adapter;
     Context context;
+    NewsDataBAse newsDataBAse;
+    Intent intent;
+    LocalDataSource localDataSource;
+
 
     public static String sources = "techcrunch";
 
 
+    public RemoteDataSource(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -57,12 +65,13 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
                   //  swipeRefreshLayout.setRefreshing(false);
                     arcticles = response.body().getArcticles();
-                    adapter = new Adapter(arcticles, recyclerView.getContext());
+                    adapter = new Adapter(arcticles, context);
                     recyclerView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
-                     Intent intent;
-                     LocalDataSource localDataSource;
+
+
+                     newsDataBAse.getInstance(context);
 
 
                     for (int i = 0; i <arcticles.size() ; i++) {
@@ -84,13 +93,13 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                         intent.putExtra("urlToImage", urlToImage.toString());
 */
 
-                      /*  localDataSource = new LocalDataSource(title,
+                        localDataSource = new LocalDataSource(title,
                                 description,
                                 author,
                                 name,
                                 url,
-                                urlToImage);
-                        localDataSource.execute();*/
+                                urlToImage, context);
+                        localDataSource.execute();
 
 
 

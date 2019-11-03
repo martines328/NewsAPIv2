@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import com.example.newsapiv2.MainActivity;
+
 import java.util.List;
 
 public class NewsRepository {
@@ -12,15 +14,17 @@ public class NewsRepository {
     private androidx.lifecycle.LiveData<List<EntityDB>> getAll;
     private DAO dao;
     NewsDataBAse newsDataBAse;
-    Context context;
     private String Db_name = "NewsDB";
+    Context context;
 
 
-    public NewsRepository() {
+    public NewsRepository(Context context) {
 
-        newsDataBAse = androidx.room.Room.databaseBuilder(context.getApplicationContext(),NewsDataBAse.class,
+        this.context = context;
+
+       /* newsDataBAse = androidx.room.Room.databaseBuilder(context.,NewsDataBAse.class,
               Db_name).build();
-
+*/
     }
 
     public  void insertNews(String title,
