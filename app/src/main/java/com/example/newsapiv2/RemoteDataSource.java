@@ -35,11 +35,11 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
     List<Arcticle> arcticles = new ArrayList<>();
     Context context;
-    NewsDataBAse newsDataBAse;
+     static NewsDataBAse newsDataBAse;
     Adapter1 nadapter;
     Intent intent;
     LocalDataSource localDataSource;
-    List<EntityDB> listEntity = new ArrayList<>();
+    static List<EntityDB> listEntity = new ArrayList<>();
 
 
 

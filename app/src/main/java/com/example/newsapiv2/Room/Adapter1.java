@@ -24,7 +24,6 @@ import java.util.List;
 public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     static Context context  ;
     static List<EntityDB> listEntity;
-    NewsRepository newsRepository;
 
 
     public Adapter1( Context context, List<EntityDB> listEntity) {
@@ -41,7 +40,6 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-       /* LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);*/
       View view = LayoutInflater.from(context).inflate(R.layout.arcticle_recycler_item,parent,false);
       return new MyViewHolder(view);
     }
@@ -51,10 +49,7 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
 
 
 
-        EntityDB entity = listEntity.get(position);
-        Log.i("mytag", entity.getAuthor());
-        Log.i("mytag", listEntity.toString());
-        Log.i("mytag", "work");
+
 
 
 
