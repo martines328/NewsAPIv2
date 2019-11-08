@@ -21,6 +21,8 @@ public interface DAO {
     @Query("SELECT * FROM news_table")
      List<EntityDB> getAll();
 
+
+
     @Update
     void update(EntityDB entityDB);
 
