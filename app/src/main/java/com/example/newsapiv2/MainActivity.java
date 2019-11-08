@@ -1,6 +1,7 @@
 package com.example.newsapiv2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.RoomDatabase;
@@ -17,6 +18,7 @@ import com.example.newsapiv2.API.ApiClient;
 import com.example.newsapiv2.API.ApiInterface;
 import com.example.newsapiv2.API.Arcticle;
 import com.example.newsapiv2.API.News;
+import com.example.newsapiv2.Room.EntityDB;
 import com.example.newsapiv2.Room.NewsDataBAse;
 import com.example.newsapiv2.Room.NewsRepository;
 
@@ -27,11 +29,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class MainActivity extends AppCompatActivity {
 
     public static RecyclerView recyclerView;
     public static SwipeRefreshLayout swipeRefreshLayout;
     RemoteDataSource remoteDataSource;
+    static NewsRepository newsRepository;
+    NewsAdapter adapter;
+
+
 
     Context context;
     NewsDataBAse newsDataBAse;
@@ -52,21 +58,33 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
 
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+            }
+        });
+
         remoteDataSource = new RemoteDataSource(MainActivity.this);
         remoteDataSource.execute();
 
 
 
+
+    }
+
+
+
+
+    void refresh(){
+        Toast.makeText(context, "refresh work", Toast.LENGTH_SHORT).show();
+
     }
 
 
 
 
-    @Override
-    public void onRefresh() {
-
-
-    }
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.newsapiv2.Room;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -18,10 +19,13 @@ public interface DAO {
     void insert(EntityDB entityDB);
 
     @Query("SELECT * FROM news_table")
-    androidx.lifecycle.LiveData<List<EntityDB>> getAll();
+     List<EntityDB> getAll();
 
     @Update
     void update(EntityDB entityDB);
+
+
+
 
 
 

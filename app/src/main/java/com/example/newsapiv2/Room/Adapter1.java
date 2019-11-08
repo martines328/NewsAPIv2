@@ -1,6 +1,5 @@
-package com.example.newsapiv2;
+package com.example.newsapiv2.Room;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
@@ -10,33 +9,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.newsapiv2.API.Arcticle;
-import com.example.newsapiv2.Room.EntityDB;
-import com.example.newsapiv2.Room.NewsRepository;
+import com.example.newsapiv2.R;
+import com.example.newsapiv2.WebViewNew;
 
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-    List<Arcticle> arcticles;
+public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     static Context context  ;
     static List<EntityDB> listEntity;
-    Application application;
+    NewsRepository newsRepository;
 
 
-    public Adapter(List<Arcticle> arcticles, Context context) {
+    public Adapter1( Context context) {
 
-        this.arcticles = arcticles;
+       // this.arcticles = arcticles;
        this.context = context;
        //this.listEntity = listEntity;
+        newsRepository = new NewsRepository(context);
 
     }
 
@@ -52,21 +48,22 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        Arcticle model = arcticles.get(position);
 
 
-
-        /*EntityDB entity = listEntity.get(position);
-        entity.getId();
+        listEntity = newsRepository.getAllNews();
+        EntityDB entity = listEntity.get(position);
         Log.i("mytag", entity.getAuthor());
         Log.i("mytag", listEntity.toString());
-
-*/
-
+        Log.i("mytag", "work");
 
 
 
-        String urlToImage = model.getUrlToImage();
+
+
+
+
+
+     /*   String urlToImage = model.getUrlToImage();
         final String urlView = model.getUrl();
 
 
@@ -88,14 +85,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
 
             }
-        });
+        });*/
 
 
     }
 
     @Override
     public int getItemCount() {
-        return arcticles.size();
+        return listEntity.size();
     }
 
 

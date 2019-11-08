@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.newsapiv2.MainActivity;
 
 import java.util.List;
@@ -22,9 +24,7 @@ public class NewsRepository {
 
         this.context = context;
 
-       /* newsDataBAse = androidx.room.Room.databaseBuilder(context.,NewsDataBAse.class,
-              Db_name).build();
-*/
+
     }
 
     public  void insertNews(String title,
@@ -66,9 +66,10 @@ public class NewsRepository {
         }.execute();
     }
 
-    public androidx.lifecycle.LiveData<List<EntityDB>> getAllNews(){
+    public List<EntityDB> getAllNews(){
         return newsDataBAse.dao().getAll();
     }
+
 
 
 }

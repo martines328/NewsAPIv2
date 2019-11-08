@@ -6,11 +6,17 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+
 import com.example.newsapiv2.API.ApiClient;
 import com.example.newsapiv2.API.ApiInterface;
 import com.example.newsapiv2.API.Arcticle;
 import com.example.newsapiv2.API.News;
+import com.example.newsapiv2.Room.Adapter1;
+import com.example.newsapiv2.Room.EntityDB;
 import com.example.newsapiv2.Room.NewsDataBAse;
+import com.example.newsapiv2.Room.NewsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +34,13 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
 
     List<Arcticle> arcticles = new ArrayList<>();
-    public Adapter adapter;
+   // public NewsAdapter nadapter;
     Context context;
     NewsDataBAse newsDataBAse;
+    Adapter1 nadapter;
     Intent intent;
     LocalDataSource localDataSource;
+
 
 
     public static String sources = "techcrunch";
@@ -63,15 +71,15 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                     }
                     Log.i("mytag","in onresponse");
 
-                  //  swipeRefreshLayout.setRefreshing(false);
                     arcticles = response.body().getArcticles();
-                    adapter = new Adapter(arcticles, context);
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-
-
+                    //nadapter = new Adapter(arcticles, context);
+                    nadapter = new Adapter1( context);
+                    recyclerView.setAdapter(nadapter);
+                    nadapter.notifyDataSetChanged();
 
                      newsDataBAse.getInstance(context);
+
+
 
 
                     for (int i = 0; i <arcticles.size() ; i++) {
@@ -85,13 +93,7 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                         String url = arcticle.getUrl();
                         String urlToImage = arcticle.getUrlToImage();
 
-                      /*  intent.putExtra("title", title.toString());
-                        intent.putExtra("description", description.toString());
-                        intent.putExtra("author", author.toString());
-                        intent.putExtra("name", name.toString());
-                        intent.putExtra("url", url.toString());
-                        intent.putExtra("urlToImage", urlToImage.toString());
-*/
+
 
                         localDataSource = new LocalDataSource(title,
                                 description,
@@ -104,6 +106,10 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
 
                     }
+
+
+
+
 
 
 
@@ -133,6 +139,8 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
         return null;
     }
+
+
 
 
 
