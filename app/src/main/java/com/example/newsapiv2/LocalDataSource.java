@@ -1,5 +1,6 @@
 package com.example.newsapiv2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Entity;
 import android.content.Intent;
@@ -24,7 +25,7 @@ import static com.example.newsapiv2.MainActivity.recyclerView;
 public class LocalDataSource extends AsyncTask<Void,Void,Void> {
     NewsRepository newsRepository;
      static NewsDataBAse newsDataBAse;
-    public NewsAdapter adapter;
+    public Adapter1 adapter;
 
 
      String title, description, author, name, url, urlToImage;
@@ -46,10 +47,11 @@ public class LocalDataSource extends AsyncTask<Void,Void,Void> {
 
 
 
+    @SuppressLint("WrongThread")
     @Override
     protected Void doInBackground(Void... voids) {
 
-        List<EntityDB> listDB;
+        List<EntityDB> listDB ;
 
         //newsRepository.insertNews();
         EntityDB entityDB = new EntityDB();
@@ -63,7 +65,11 @@ public class LocalDataSource extends AsyncTask<Void,Void,Void> {
        newsDataBAse.getInstance(context).dao().insert(entityDB);
 
 
+
        listDB = newsDataBAse.dao().getAll();
+       adapter = new Adapter1(context, listDB);
+       recyclerView.setAdapter(adapter);
+
 
 
 

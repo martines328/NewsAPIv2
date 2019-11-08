@@ -73,14 +73,11 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
                     arcticles = response.body().getArcticles();
                     //nadapter = new Adapter(arcticles, context);
-                    nadapter = new Adapter1( context);
+                   /* nadapter = new Adapter1( context);
                     recyclerView.setAdapter(nadapter);
-                    nadapter.notifyDataSetChanged();
+                    nadapter.notifyDataSetChanged();*/
 
                      newsDataBAse.getInstance(context);
-
-
-
 
                     for (int i = 0; i <arcticles.size() ; i++) {
 

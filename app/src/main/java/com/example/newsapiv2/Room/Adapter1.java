@@ -27,12 +27,12 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     NewsRepository newsRepository;
 
 
-    public Adapter1( Context context) {
+    public Adapter1( Context context, List<EntityDB> listEntity) {
 
        // this.arcticles = arcticles;
        this.context = context;
-       //this.listEntity = listEntity;
-        newsRepository = new NewsRepository(context);
+       this.listEntity = listEntity;
+
 
     }
 
@@ -50,7 +50,7 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
 
-        listEntity = newsRepository.getAllNews();
+
         EntityDB entity = listEntity.get(position);
         Log.i("mytag", entity.getAuthor());
         Log.i("mytag", listEntity.toString());
