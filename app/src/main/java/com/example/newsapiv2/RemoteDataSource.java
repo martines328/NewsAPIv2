@@ -36,10 +36,11 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
     List<Arcticle> arcticles = new ArrayList<>();
     Context context;
      static NewsDataBAse newsDataBAse;
-    Adapter1 nadapter;
+     static String TAG  = "mytag";
+
     Intent intent;
     LocalDataSource localDataSource;
-    static List<EntityDB> listEntity = new ArrayList<>();
+
 
 
 
@@ -74,7 +75,7 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                    // newsDataBAse.getInstance(context);
                     arcticles = response.body().getArcticles();
                     //nadapter = new Adapter(arcticles, context);
-
+                   
 
                      newsDataBAse.getInstance(context);
 
@@ -82,6 +83,7 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
                     for (int i = 0; i <arcticles.size() ; i++) {
 
+                        Log.i(TAG, "onResponse:  for  get retrofit data");
                         Arcticle arcticle = arcticles.get(i);
                         String title = arcticle.getTitle();
                         String description = arcticle.getDescription();
@@ -105,10 +107,10 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
 
 
-                    listEntity = newsDataBAse.dao().getAll();
+                   /* listEntity = newsDataBAse.dao().getAll();
                     nadapter = new Adapter1( context, listEntity);
                     recyclerView.setAdapter(nadapter);
-                    nadapter.notifyDataSetChanged();
+                    nadapter.notifyDataSetChanged();*/
 
 
 

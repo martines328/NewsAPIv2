@@ -21,16 +21,17 @@ import com.example.newsapiv2.WebViewNew;
 
 import java.util.List;
 
+import static com.example.newsapiv2.LocalDataSource.listEntity;
+
 public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
     static Context context  ;
-    static List<EntityDB> listEntity;
 
 
-    public Adapter1( Context context, List<EntityDB> listEntity) {
+    public Adapter1( Context context) {
 
        // this.arcticles = arcticles;
        this.context = context;
-       this.listEntity = listEntity;
+       //this.listEntity = listEntity;
 
 
     }
@@ -49,6 +50,12 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
 
 
 
+
+    //    EntityDB entityDB = listEntity.get(position);
+
+
+        //holder.title.setText(entityDB.getTitle());
+        Log.i("mytag", "onBindViewHolder: ");
 
 
 
@@ -87,7 +94,7 @@ public class Adapter1 extends RecyclerView.Adapter<Adapter1.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listEntity.size();
+        return 5;
     }
 
 

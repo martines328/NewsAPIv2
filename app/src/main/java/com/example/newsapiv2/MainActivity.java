@@ -18,6 +18,8 @@ import com.example.newsapiv2.API.ApiClient;
 import com.example.newsapiv2.API.ApiInterface;
 import com.example.newsapiv2.API.Arcticle;
 import com.example.newsapiv2.API.News;
+import com.example.newsapiv2.Room.Adapter1;
+import com.example.newsapiv2.Room.DAO;
 import com.example.newsapiv2.Room.EntityDB;
 import com.example.newsapiv2.Room.NewsDataBAse;
 import com.example.newsapiv2.Room.NewsRepository;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     RemoteDataSource remoteDataSource;
     static NewsRepository newsRepository;
     NewsAdapter adapter;
+    Adapter1 nadapter;
+
 
 
 
@@ -69,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
         remoteDataSource = new RemoteDataSource(MainActivity.this);
         remoteDataSource.execute();
 
+        Log.i("mytag", "onCreate: ");
+
+
+
+            nadapter = new Adapter1(context);
+            recyclerView.setAdapter(nadapter);
+            nadapter.notifyDataSetChanged();
 
 
 
