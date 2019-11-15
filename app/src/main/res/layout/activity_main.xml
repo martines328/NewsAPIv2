@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#C2C0C0">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/recyclreview"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
     static NewsRepository newsRepository;
     NewsAdapter adapter;
     Adapter1 nadapter;
-
+    String TAG = "tagtag";
 
 
 
     Context context;
-    NewsDataBAse newsDataBAse;
+
 
     final static String apikey = "156885bf94af406cbe310eb5ef39d6da";
 
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 refresh();
             }
         });
@@ -73,23 +74,18 @@ public class MainActivity extends AppCompatActivity {
         remoteDataSource = new RemoteDataSource(MainActivity.this);
         remoteDataSource.execute();
 
+
         Log.i("mytag", "onCreate: ");
-
-
-
-            nadapter = new Adapter1(context);
-            recyclerView.setAdapter(nadapter);
-            nadapter.notifyDataSetChanged();
 
 
 
     }
 
 
-
-
     void refresh(){
-        Toast.makeText(context, "refresh work", Toast.LENGTH_SHORT).show();
+
+
+
 
     }
 

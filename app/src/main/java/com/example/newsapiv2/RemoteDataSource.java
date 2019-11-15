@@ -6,8 +6,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 
 import com.example.newsapiv2.API.ApiClient;
 import com.example.newsapiv2.API.ApiInterface;
@@ -15,31 +13,28 @@ import com.example.newsapiv2.API.Arcticle;
 import com.example.newsapiv2.API.News;
 import com.example.newsapiv2.Room.Adapter1;
 import com.example.newsapiv2.Room.EntityDB;
-import com.example.newsapiv2.Room.NewsDataBAse;
-import com.example.newsapiv2.Room.NewsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-//import static com.example.newsapiv2.MainActivity.adapter;
 import static com.example.newsapiv2.MainActivity.apikey;
 import static com.example.newsapiv2.MainActivity.recyclerView;
-import static com.example.newsapiv2.MainActivity.swipeRefreshLayout;
 
 public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
 
 
     List<Arcticle> arcticles = new ArrayList<>();
     Context context;
-     static NewsDataBAse newsDataBAse;
      static String TAG  = "mytag";
 
-    Intent intent;
+    Adapter1 nadapter;
     LocalDataSource localDataSource;
+    List<EntityDB> list = new ArrayList<>();
 
 
 
@@ -58,7 +53,6 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
         ApiInterface apiInterface = ApiClient.getAPIClient().create(ApiInterface.class);
 
         Call<News> call;
-        Log.i("mytag","in doinbackground");
 
         call = apiInterface.getNewsSearch(sources, apikey);
 
@@ -72,12 +66,7 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                     }
                     Log.i("mytag","in onresponse");
 
-                   // newsDataBAse.getInstance(context);
                     arcticles = response.body().getArcticles();
-                    //nadapter = new Adapter(arcticles, context);
-                   
-
-                     newsDataBAse.getInstance(context);
 
 
 
@@ -93,7 +82,6 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                         String urlToImage = arcticle.getUrlToImage();
 
 
-
                         localDataSource = new LocalDataSource(title,
                                 description,
                                 author,
@@ -103,14 +91,20 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                         localDataSource.execute();
 
 
+
                     }
 
+                    try {
+                         list = localDataSource.get();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-
-                   /* listEntity = newsDataBAse.dao().getAll();
-                    nadapter = new Adapter1( context, listEntity);
+                    nadapter = new Adapter1(context,list);
                     recyclerView.setAdapter(nadapter);
-                    nadapter.notifyDataSetChanged();*/
+                    nadapter.notifyDataSetChanged();
 
 
 
@@ -133,6 +127,7 @@ public class RemoteDataSource extends AsyncTask<Void,Void,Void> {
                 Log.i("mytag", exception.toString());
             }
         });
+
 
 
 

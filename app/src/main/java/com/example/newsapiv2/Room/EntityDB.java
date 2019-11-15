@@ -3,9 +3,11 @@ package com.example.newsapiv2.Room;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "news_table")
+//@Entity(tableName = "news_table" )
+@Entity(tableName = "news_table" , indices = {@Index(value = {"title", "author"} , unique = true)})
 public class EntityDB {
 
 
@@ -64,9 +66,9 @@ public class EntityDB {
         this.author = author;
     }
 
-   /* public String getName() {
+    public String getName() {
         return name;
-    }*/
+    }
 
     public void setName(String name) {
         this.name = name;

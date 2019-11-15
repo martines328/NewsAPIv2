@@ -1,26 +1,22 @@
 package com.example.newsapiv2;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.newsapiv2.Room.Adapter1;
 import com.example.newsapiv2.Room.DAO;
 import com.example.newsapiv2.Room.EntityDB;
 import com.example.newsapiv2.Room.NewsDataBAse;
-import com.example.newsapiv2.Room.NewsRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.newsapiv2.MainActivity.recyclerView;
 import static com.example.newsapiv2.RemoteDataSource.TAG;
-import static com.example.newsapiv2.RemoteDataSource.newsDataBAse;
 
-public class LocalDataSource extends AsyncTask<Void, Void, Void> {
+public class LocalDataSource extends AsyncTask<Void, Void, List<EntityDB>> {
     private  DAO dao;
     public static List<EntityDB> listEntity = new ArrayList<>();
+
 
 
     String title, description, author, name, url, urlToImage;
@@ -41,7 +37,7 @@ public class LocalDataSource extends AsyncTask<Void, Void, Void> {
 
 
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected List<EntityDB> doInBackground(Void... voids) {
 
 
         Log.i(TAG, "doInBackground:  LocalDAtaSource");
@@ -58,12 +54,15 @@ public class LocalDataSource extends AsyncTask<Void, Void, Void> {
 
 
         listEntity = dao.getAll();
-        Log.i(TAG, "doInBackground: "+ listEntity.toString());
+       // Log.i(TAG, "doInBackground: "+ listEntity.toString());
 
 
 
-        return null;
+
+        return listEntity;
     }
+
+
 
 
 }

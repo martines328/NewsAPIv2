@@ -50,6 +50,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
       return new MyViewHolder(view);
     }
 
+
+
+
+
+
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         Arcticle model = arcticles.get(position);
